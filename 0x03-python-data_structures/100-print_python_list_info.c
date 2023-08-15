@@ -12,17 +12,14 @@ void print_python_list_info(PyObject *p)
 {
 	size_t size, i;
 	PyObject *obj;
-	PyListObject *list;
 
-	size = Py_SIZE(p);
-	printf("[*] Size of the Python List = %ld\n", size);
-
-	list = (PyListObject *)p;
-	printf("[*] Allocated = %ld\n", list->allocated);
+	size = PyList_Size(p);
+	printf("[*] Size of the Python List = %zu\n", size);
+	printf("[*] Allocated = %zu\n", ((PyListObject *)p)->allocated);
 
 	for (i = 0; i < size; i++)
 	{
-		obj = PyList_GetItem(p, i);
-		printf("Element %ld: %s\n", i, Py_TYPE(obj)->tp_name);
+		obj = PyList_GET_ITEM(p, i);
+		printf("Element %zu: %s\n", i, Py_TYPE(obj)->tp_name);
 	}
 }
