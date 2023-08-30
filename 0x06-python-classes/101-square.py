@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Coordinates of a square"""
+"""Define coordinates of a square"""
 
 
 class Square:
@@ -25,13 +25,13 @@ class Square:
         """Initializes attribute size """
         if (type(value) is not int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
 
     @property
     def position(self):
-        """Getter for position"""
+        """Getter and setter for position"""
         return self.__position
 
     @position.setter
@@ -58,4 +58,6 @@ class Square:
         for i in range(self.__size):
             str += ' ' * self.position[0]
             str += '#' * self.__size + '\n'
-        return str[:-1]
+            if i != self.__size -1:
+                print()
+        return
