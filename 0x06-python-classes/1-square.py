@@ -4,6 +4,6 @@
 
 class Square:
     """This square class defines a square'"""
-    def __init__(seld, size=None):
+    def __init__(self, size=None):
         """Initialising private attribute 'size'"""
         self.__size = size
