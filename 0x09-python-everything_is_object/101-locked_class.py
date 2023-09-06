@@ -1,7 +1,11 @@
 #!/usr/bin/python3
-class LockedClass:
+"""Lockedclass that prevents dynamic attributes creation"""
 
-    __slots__ = "first_name"
 
-    def __init__(self, first_name=None):
-        self. first_name = first_name
+class LockedClass():
+    """Class to prevent dynamic attributes creation"""
+    __slots__ = ['first_name']
+
+    def __init__(self):
+        """Init method"""
+        pass
