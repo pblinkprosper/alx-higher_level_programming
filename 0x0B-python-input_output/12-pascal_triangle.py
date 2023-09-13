@@ -5,12 +5,21 @@
 def pascal_triangle(n):
     """Represents a Pascal's triangle of size n"""
 
-    triangle = []
-    for position in range(1, n + 1):
-        triangle.append([1] * position)
-    for y in range(2, n):
-        row = triangle[y]
-        prev_row = triangle[y]
-        for x in range(1, len(row) - 1):
-            row[x] = prev_row[x - 1] + prev_row[x]
+    if (n <= 0):
+        return []
+    elif (n == 1):
+        return [1]
+    elif (n == 2):
+        return [[1], [1, 1]]
+
+    triangle = [[1], [1, 1]]
+
+    for i in range(1, n - 1):
+        the_list = []
+        the_list.append(1)
+        for y in range(1, len(triangle)):
+            the_list.append(triangle[i][y - 1] + triangle[i][y])
+        the_list.append(1)
+        triangle.append(the_list)
+
     return triangle
