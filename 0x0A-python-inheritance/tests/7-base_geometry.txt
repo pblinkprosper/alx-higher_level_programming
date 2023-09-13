@@ -1,61 +1,90 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-bg.area()
+>>> modulo_doc = __import__('7-base_geometry').__doc__
+>>> print(len(modulo_doc) > 0)
+True
+
+>>> class_doc = __import__('7-base_geometry').BaseGeometry.__doc__
+>>> print(len(class_doc) > 0)
+True
+
+>>> area_doc = __import__('7-base_geometry').BaseGeometry.area.__doc__
+>>> print(len(area_doc) > 0)
+True
+
+>>> validate_doc = __import__('7-base_geometry').BaseGeometry.integer_validator.__doc__
+>>> print(len(validate_doc) > 0)
+True
+
+>>> bg.integer_validator("my_int", 12)
+>>>
+
+>>> bg.integer_validator("width", 89)
+>>>
+
+>>> bg.integer_validator("uno", 0)
 Traceback (most recent call last):
 ...
-Exception: area() is not implemented
+ValueError: uno must be greater than 0
 
-bg.area(12)
+>>> bg.integer_validator("dos", -1)
 Traceback (most recent call last):
 ...
-TypeError: area() takes 1 positional argument but 2 were given
+ValueError: dos must be greater than 0
 
->>> bg.integer_validator()
+>>> bg.integer_validator("tres", [])
 Traceback (most recent call last):
 ...
-TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+TypeError: tres must be an integer
 
->>> bg.integer_validator('hello', -3)
+>>> bg.integer_validator("cuatro", {})
 Traceback (most recent call last):
 ...
-ValueError: hello must be greater than 0
+TypeError: cuatro must be an integer
 
->>> bg.integer_validator('hello', 0)
+>>> bg.integer_validator("cinco", (1, 0))
 Traceback (most recent call last):
 ...
-ValueError: hello must be greater than 0
+TypeError: cinco must be an integer
 
->>> bg.integer_validator(None, 12)
-
-
->>> bg.integer_validator('hello', [1, 2])
+>>> bg.integer_validator("seis", "")
 Traceback (most recent call last):
 ...
-TypeError: hello must be an integer
+TypeError: seis must be an integer
 
-
->>> bg.integer_validator('hello', (3, 4))
+>>> bg.integer_validator("siete", 5.2)
 Traceback (most recent call last):
 ...
-TypeError: hello must be an integer
+TypeError: siete must be an integer
 
->>> bg.integer_validator('hello', {1, 8})
+>>> bg.integer_validator("ocho", 5j)
 Traceback (most recent call last):
 ...
-TypeError: hello must be an integer
+TypeError: ocho must be an integer
 
->>> bg.integer_validator('age', True)
+>>> bg.integer_validator("nueve", float('nan'))
 Traceback (most recent call last):
 ...
-TypeError: age must be an integer
+TypeError: nueve must be an integer
 
->>> bg.integer_validator('hello', '4')
+>>> bg.integer_validator("diez", float('inf'))
 Traceback (most recent call last):
 ...
-TypeError: hello must be an integer
+TypeError: diez must be an integer
 
->>> bg.integer_validator('hello', None)
+>>> bg.integer_validator("once", 100e319)
 Traceback (most recent call last):
 ...
-TypeError: hello must be an integer
+TypeError: once must be an integer
+
+>>> bg.integer_validator("doce", -5.2)
+Traceback (most recent call last):
+...
+TypeError: doce must be an integer
+
+>>> bg.integer_validator("trece", 0b010101)
+>>>
+
+>>> bg.integer_validator("catorce", 0xAF56)
+>>>
