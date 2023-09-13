@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Program creates a class called MyList that inherits of the class List"""
+"""Program creates class called MyList that inherits the class List"""
 
 
 class MyList(list):
